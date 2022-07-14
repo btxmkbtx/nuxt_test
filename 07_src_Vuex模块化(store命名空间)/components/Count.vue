@@ -25,7 +25,14 @@ export default {
     };
   },
   computed: {
-    ...mapState("count/counter", ["sum", "school", "subject"]),
+    // 对象写法，状态树由nuxt框架交给mapState对象写法下的箭头函数的入参
+    ...mapState({
+      sum: (state) => state.count.counter.sum,
+      school: (state) => state.count.counter.school,
+      subject: (state) => state.count.counter.subject,
+    }),
+    // 数组写法，原理和vue-cli版本一样，只不过命名空间的解析从Vuex.Store的modules搬家到了这里的mapkey
+    //...mapState("count/counter", ["sum", "school", "subject"]),
 
     ...mapGetters("count/counter", ["bigSum"]),
   },
