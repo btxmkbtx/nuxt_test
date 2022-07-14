@@ -1,6 +1,6 @@
 # 官网
 
-英文 
+英文  
 
 https://nuxtjs.org/docs/get-started/installation
 
