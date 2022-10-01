@@ -172,10 +172,41 @@ Route Middleware（路由拦截器）的类型一共有三种，与vue-cli的路
        middleware: "auth", //这个名称要与middleware文件夹下的文件名一致，这里对应的文件名为auth.js
      },
    };
+   ```
    
+2. Layout路由
+
+   本质上就是通过全局路由，给当前上下文添加一些自定义属性，然后把这些属性传递给layout
+
+   页面中的layout既可以设置成layout文件名，也可以设置成一个箭头函数，箭头函数的参数就是当前上下文。
+
+   例：
+
+   middleware：
+
+   ```js
+   export default function (ctx) {
+     ctx.layoutName = "blog";
+   }
    ```
 
-2. Layout路由
+   page：
+
+   ```vue
+   <template>
+     <div>首页</div>
+   </template>
+   
+   <script>
+   export default {
+     name: "App",
+     layout: (ctx) => {
+       console.log("当前上下文中指定的布局为：", ctx.layoutName);
+       return ctx.layoutName ? ctx.layoutName : "default";
+     }, //页面中的layout既可以设置成layout文件名，也可以设置成一个箭头函数，箭头函数的参数就是当前上下文。
+   };
+   </script>
+   ```
 
 3. 局部路由拦截器(Page Component)
 

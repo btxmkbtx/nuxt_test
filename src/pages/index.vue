@@ -17,6 +17,7 @@ export default {
       sex: "男",
     };
   },
+  // Nuxt框架会自动找到directives属性，并在后台帮我们调用Vue.directive
   directives: {
     fbind,
   },
